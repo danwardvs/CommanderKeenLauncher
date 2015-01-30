@@ -5,6 +5,7 @@
 #include<string>
 #include<cstring>
 
+//SFfadsfkghldfj;
 BITMAP* buffer;
 BITMAP* keen1;
 BITMAP* keen2;
@@ -12,6 +13,16 @@ BITMAP* keen3;
 BITMAP* keen4;
 BITMAP* keen5;
 BITMAP* keen6;
+BITMAP* cursor;
+
+// Fonts
+FONT* f1;
+FONT* f2;
+FONT* f3;
+FONT* f4;
+FONT* f5;
+FONT* slabo;
+
 
 using namespace std;
 
@@ -64,6 +75,19 @@ void abort_on_error(const char *message){
 	 exit(-1);
 }
 
+//Check to see if an area is hovered
+bool location_hovered(int min_x,int max_x,int min_y,int max_y){
+    if(mouse_x>min_x && mouse_x<max_x && mouse_y>min_y && mouse_y<max_y)
+        return true;
+    else return false;
+}
+
+//Check to see if an area is clicked
+bool location_clicked(int min_x,int max_x,int min_y,int max_y){
+    if(mouse_x>min_x && mouse_x<max_x && mouse_y>min_y && mouse_y<max_y && mouse_b & 1)
+        return true;
+    else return false;
+}
 
 void update(){
 
@@ -83,6 +107,20 @@ void draw(){
     draw_sprite(buffer,keen2,360,50);
     draw_sprite(buffer,keen4,360,270);
     draw_sprite(buffer,keen6,360,490);
+    if(location_hovered(20,340,50,250))
+     textout_centre_ex( buffer, slabo, "Launch Keen 1 \"Marooned on Mars\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
+    if(location_hovered(20,340,270,470))
+     textout_centre_ex( buffer, slabo, "Launch Keen 3 \"Keen Must Die!\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
+    if(location_hovered(20,340,490,690))
+     textout_centre_ex( buffer, slabo, "Launch Keen 5 \"The Armageddon Machine\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
+    if(location_hovered(360,680,50,250))
+     textout_centre_ex( buffer, slabo, "Launch Keen 2 \"The Earth Explodes\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
+    if(location_hovered(360,680,270,470))
+     textout_centre_ex( buffer, slabo, "Launch Keen 4 \"Goodbye Galaxy\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
+    if(location_hovered(360,680,490,690))
+     textout_centre_ex( buffer, slabo, "Launch Keen 6 \"Aliens Ate My Babysitter\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
+
+    draw_sprite(buffer,cursor,mouse_x,mouse_y);
 
     draw_sprite(screen,buffer,0,0);
 
@@ -100,6 +138,20 @@ void draw(){
 void setup(){
     buffer=create_bitmap(700,710);
 
+
+    // Load fonts
+    f1 = load_font("build\\slabo.pcx", NULL, NULL);
+    f2 = extract_font_range(f1, ' ', 'A'-1);
+    f3 = extract_font_range(f1, 'A', 'Z');
+    f4 = extract_font_range(f1, 'Z'+1, 'z');
+    slabo = merge_fonts(f4, f5 = merge_fonts(f2, f3));
+
+    // Destroy temporary fonts
+    destroy_font(f1);
+    destroy_font(f2);
+    destroy_font(f3);
+    destroy_font(f4);
+    destroy_font(f5);
 
     srand(time(NULL));
 
@@ -128,6 +180,8 @@ void setup(){
       abort_on_error("Cannot find image icons\\keen5.png\nPlease check your files and try again");
   if (!(keen6 = load_bitmap("icons\\keen6.png", NULL)))
       abort_on_error("Cannot find image icons\\keen6.png\nPlease check your files and try again");
+  if (!(cursor = load_bitmap("build\\cursor.png", NULL)))
+      abort_on_error("Cannot find image cursor.png\nPlease check your files and try again");
 }
 
 

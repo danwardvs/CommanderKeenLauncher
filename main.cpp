@@ -11,6 +11,7 @@ BITMAP* keen2;
 BITMAP* keen3;
 BITMAP* keen4;
 BITMAP* keen5;
+BITMAP* keen6;
 
 using namespace std;
 
@@ -77,10 +78,11 @@ void draw(){
 
      rectfill(buffer,0,0,1024,768,makecol(255,255,255));
     draw_sprite(buffer,keen1,20,20);
-    draw_sprite(buffer,keen2,20,240);
-    draw_sprite(buffer,keen3,20,460);
-    draw_sprite(buffer,keen4,360,20);
+    draw_sprite(buffer,keen3,20,240);
+    draw_sprite(buffer,keen4,20,460);
+    draw_sprite(buffer,keen2,360,20);
     draw_sprite(buffer,keen5,360,240);
+    draw_sprite(buffer,keen6,360,470);
 
     draw_sprite(screen,buffer,0,0);
 
@@ -124,6 +126,8 @@ void setup(){
       abort_on_error("Cannot find image icons\\keen4.png\nPlease check your files and try again");
   if (!(keen5 = load_bitmap("icons\\keen5.png", NULL)))
       abort_on_error("Cannot find image icons\\keen5.png\nPlease check your files and try again");
+  if (!(keen6 = load_bitmap("icons\\keen6.png", NULL)))
+      abort_on_error("Cannot find image icons\\keen6.png\nPlease check your files and try again");
 }
 
 

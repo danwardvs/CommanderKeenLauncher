@@ -23,9 +23,6 @@ FONT* f4;
 FONT* f5;
 FONT* slabo;
 
-
-using namespace std;
-
 bool close_button_pressed;
 
 // FPS System
@@ -37,7 +34,14 @@ int fps;
 int frames_done;
 int old_time;
 
-char* keen_1=".\\keen1\\KEEN1.EXE -fullscreen";
+int step;
+
+char* keen_1=".\\keen1\\KEEN1.EXE -fullscreen -exit -noconsole";
+char* keen_2=".\\keen2\\KEEN2.EXE -fullscreen -exit -noconsole";
+char* keen_3=".\\keen3\\KEEN3.EXE -fullscreen -exit -noconsole";
+char* keen_4=".\\keen4\\KEEN4E.EXE -fullscreen -exit -noconsole";
+char* keen_5=".\\keen5\\KEEN5E.EXE -fullscreen -exit -noconsole";
+char* keen_6=".\\keen6\\KEEN6C.EXE -fullscreen -exit -noconsole";
 char* dosbox_dir="C:\\Program Files (x86)\\DOSBox-0.74\\DOSBox.exe";
 
 void ticker(){
@@ -91,8 +95,33 @@ bool location_clicked(int min_x,int max_x,int min_y,int max_y){
 
 void update(){
 
-   if(key[KEY_F])ShellExecute(NULL, "open", dosbox_dir, keen_1, NULL, SW_SHOWDEFAULT);
-
+   if(step>100){
+    if(location_clicked(20,340,50,250)){
+      ShellExecute(NULL, "open", dosbox_dir, keen_1, NULL, SW_SHOWDEFAULT);
+      step=0;
+    }
+    if(location_clicked(20,340,270,470)){
+      ShellExecute(NULL, "open", dosbox_dir, keen_3, NULL, SW_SHOWDEFAULT);
+      step=0;
+    }
+    if(location_clicked(20,340,490,690)){
+      ShellExecute(NULL, "open", dosbox_dir, keen_5, NULL, SW_SHOWDEFAULT);
+      step=0;
+    }
+    if(location_clicked(360,680,50,250)){
+      ShellExecute(NULL, "open", dosbox_dir, keen_2, NULL, SW_SHOWDEFAULT);
+      step=0;
+    }
+    if(location_clicked(360,680,270,470)){
+      ShellExecute(NULL, "open", dosbox_dir, keen_4, NULL, SW_SHOWDEFAULT);
+      step=0;
+    }
+    if(location_clicked(360,680,490,690)){
+      ShellExecute(NULL, "open", dosbox_dir, keen_6, NULL, SW_SHOWDEFAULT);
+      step=0;
+    }
+   }
+    step++;
 
 
 }

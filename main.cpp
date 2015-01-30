@@ -110,7 +110,7 @@ int main(){
 
 
 
-  set_window_title("Sci-Fi game!");
+  set_window_title("Keen Launcher");
   setup();
 
 

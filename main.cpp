@@ -6,6 +6,8 @@
 #include<cstring>
 
 BITMAP* buffer;
+BITMAP* keen1;
+BITMAP* keen2;
 
 using namespace std;
 
@@ -20,7 +22,7 @@ int fps;
 int frames_done;
 int old_time;
 
-char* keen_1=".\\keen1\\KEEN1.EXE";
+char* keen_1=".\\keen1\\KEEN1.EXE -fullscreen";
 char* dosbox_dir="C:\\Program Files (x86)\\DOSBox-0.74\\DOSBox.exe";
 
 void ticker(){
@@ -71,6 +73,9 @@ void draw(){
 
 
      rectfill(buffer,0,0,1024,768,makecol(255,255,255));
+    draw_sprite(buffer,keen1,20,20);
+    draw_sprite(buffer,keen2,20,146);
+
     draw_sprite(screen,buffer,0,0);
 
 
@@ -103,8 +108,10 @@ void setup(){
     LOCK_FUNCTION(close_button_handler);
     set_close_button_callback(close_button_handler);
 
-   // if (!(bmp = load_bitmap("bmp.png", NULL)))
-   //   abort_on_error("Cannot find image bmp.png\nPlease check your files and try again");
+   if (!(keen1 = load_bitmap("icons\\keen1.png", NULL)))
+      abort_on_error("Cannot find image icons\\keen1.png\nPlease check your files and try again");
+    if (!(keen2 = load_bitmap("icons\\keen2.png", NULL)))
+      abort_on_error("Cannot find image icons\\keen2.png\nPlease check your files and try again");
 }
 
 

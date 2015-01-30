@@ -4,8 +4,11 @@
 	<alpng.h>
 	<time.h>
 
-1412374746 source:c:\users\danward\documents\github\commanderkeenlauncher\main.cpp
+1422629717 source:c:\users\danward\documents\github\commanderkeenlauncher\main.cpp
 	<allegro.h>
 	<alpng.h>
 	<time.h>
+	<windows.h>
+	<string>
+	<cstring>
 

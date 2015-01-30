@@ -1,8 +1,13 @@
 #include<allegro.h>
 #include<alpng.h>
 #include<time.h>
+#include<windows.h>
+#include<string>
+#include<cstring>
 
 BITMAP* buffer;
+
+using namespace std;
 
 bool close_button_pressed;
 
@@ -14,6 +19,9 @@ volatile int game_time = 0;
 int fps;
 int frames_done;
 int old_time;
+
+char* keen_1=".\\keen1\\KEEN1.EXE";
+char* dosbox_dir="C:\\Program Files (x86)\\DOSBox-0.74\\DOSBox.exe";
 
 void ticker(){
   ticks++;
@@ -50,7 +58,10 @@ void abort_on_error(const char *message){
 	 exit(-1);
 }
 
+
 void update(){
+
+   if(key[KEY_F])ShellExecute(NULL, "open", dosbox_dir, keen_1, NULL, SW_SHOWDEFAULT);
 
 
 
@@ -58,7 +69,13 @@ void update(){
 
 void draw(){
 
+
+     rectfill(buffer,0,0,1024,768,makecol(255,255,255));
     draw_sprite(screen,buffer,0,0);
+
+
+
+
 }
 
 
@@ -107,8 +124,6 @@ int main(){
 
   set_gfx_mode(GFX_AUTODETECT_WINDOWED,1024,768, 0, 0);
   install_sound(DIGI_AUTODETECT,MIDI_AUTODETECT,".");
-
-
 
   set_window_title("Keen Launcher");
   setup();

@@ -76,13 +76,13 @@ void update(){
 void draw(){
 
 
-     rectfill(buffer,0,0,1024,768,makecol(255,255,255));
-    draw_sprite(buffer,keen1,20,20);
-    draw_sprite(buffer,keen3,20,240);
-    draw_sprite(buffer,keen4,20,460);
-    draw_sprite(buffer,keen2,360,20);
-    draw_sprite(buffer,keen5,360,240);
-    draw_sprite(buffer,keen6,360,470);
+    rectfill(buffer,0,0,700,710,makecol(255,255,255));
+    draw_sprite(buffer,keen1,20,50);
+    draw_sprite(buffer,keen3,20,270);
+    draw_sprite(buffer,keen5,20,490);
+    draw_sprite(buffer,keen2,360,50);
+    draw_sprite(buffer,keen4,360,270);
+    draw_sprite(buffer,keen6,360,490);
 
     draw_sprite(screen,buffer,0,0);
 
@@ -98,7 +98,7 @@ void draw(){
 
 
 void setup(){
-    buffer=create_bitmap(1024,768);
+    buffer=create_bitmap(700,710);
 
 
     srand(time(NULL));
@@ -145,7 +145,7 @@ int main(){
   set_color_depth(32);
 
 
-  set_gfx_mode(GFX_AUTODETECT_WINDOWED,1024,768, 0, 0);
+  set_gfx_mode(GFX_AUTODETECT_WINDOWED,700,710, 0, 0);
   install_sound(DIGI_AUTODETECT,MIDI_AUTODETECT,".");
 
   set_window_title("Keen Launcher");

@@ -43,21 +43,21 @@ int old_time;
 
 int step=10;
 
-char* keen_1=".\\keen1\\KEEN1.EXE -exit -noconsole";
-char* keen_2=".\\keen2\\KEEN2.EXE -exit -noconsole";
-char* keen_3=".\\keen3\\KEEN3.EXE -exit -noconsole";
-char* keen_4=".\\keen4\\KEEN4E.EXE -exit -noconsole";
-char* keen_5=".\\keen5\\KEEN5E.EXE -exit -noconsole";
-char* keen_6=".\\keen6\\KEEN6C.EXE -exit -noconsole";
+const char* keen_1=".\\keen1\\KEEN1.EXE -exit -noconsole";
+const char* keen_2=".\\keen2\\KEEN2.EXE -exit -noconsole";
+const char* keen_3=".\\keen3\\KEEN3.EXE -exit -noconsole";
+const char* keen_4=".\\keen4\\KEEN4E.EXE -exit -noconsole";
+const char* keen_5=".\\keen5\\KEEN5E.EXE -exit -noconsole";
+const char* keen_6=".\\keen6\\KEEN6C.EXE -exit -noconsole";
 
-char* keen_1_fullscreen=".\\keen1\\KEEN1.EXE -fullscreen -exit -noconsole";
-char* keen_2_fullscreen=".\\keen2\\KEEN2.EXE -fullscreen -exit -noconsole";
-char* keen_3_fullscreen=".\\keen3\\KEEN3.EXE -fullscreen -exit -noconsole";
-char* keen_4_fullscreen=".\\keen4\\KEEN4E.EXE -fullscreen -exit -noconsole";
-char* keen_5_fullscreen=".\\keen5\\KEEN5E.EXE -fullscreen -exit -noconsole";
-char* keen_6_fullscreen=".\\keen6\\KEEN6C.EXE -fullscreen -exit -noconsole";
+const char* keen_1_fullscreen=".\\keen1\\KEEN1.EXE -fullscreen -exit -noconsole";
+const char* keen_2_fullscreen=".\\keen2\\KEEN2.EXE -fullscreen -exit -noconsole";
+const char* keen_3_fullscreen=".\\keen3\\KEEN3.EXE -fullscreen -exit -noconsole";
+const char* keen_4_fullscreen=".\\keen4\\KEEN4E.EXE -fullscreen -exit -noconsole";
+const char* keen_5_fullscreen=".\\keen5\\KEEN5E.EXE -fullscreen -exit -noconsole";
+const char* keen_6_fullscreen=".\\keen6\\KEEN6C.EXE -fullscreen -exit -noconsole";
 
-char dosbox_dir;
+string dosbox_dir;
 
 void ticker(){
   ticks++;
@@ -112,7 +112,6 @@ void load_data(){
   ifstream read("dosboxpath.txt");
   read >> dosbox_dir;
   read.close();
-  char* asdf = dosbox_dir;
 
 }
 
@@ -131,33 +130,33 @@ void update(){
 
    if(step>10){
     if(location_clicked(20,340,50,250)){
-      if(!fullscreen)ShellExecute(NULL, "open", dosbox_dir, keen_1, NULL, SW_SHOWDEFAULT);
-      if(fullscreen)ShellExecute(NULL, "open", dosbox_dir, keen_1_fullscreen, NULL, SW_SHOWDEFAULT);
+      if(!fullscreen)ShellExecute(NULL, "open", dosbox_dir.c_str(), keen_1, NULL, SW_SHOWDEFAULT);
+      if(fullscreen)ShellExecute(NULL, "open", dosbox_dir.c_str(), keen_1_fullscreen, NULL, SW_SHOWDEFAULT);
       step=0;
     }
     if(location_clicked(20,340,270,470)){
-      if(!fullscreen)ShellExecute(NULL, "open", dosbox_dir, keen_3, NULL, SW_SHOWDEFAULT);
-      if(fullscreen)ShellExecute(NULL, "open", dosbox_dir, keen_3_fullscreen, NULL, SW_SHOWDEFAULT);
+      if(!fullscreen)ShellExecute(NULL, "open", dosbox_dir.c_str(), keen_3, NULL, SW_SHOWDEFAULT);
+      if(fullscreen)ShellExecute(NULL, "open", dosbox_dir.c_str(), keen_3_fullscreen, NULL, SW_SHOWDEFAULT);
       step=0;
     }
     if(location_clicked(20,340,490,690)){
-      if(!fullscreen)ShellExecute(NULL, "open", dosbox_dir, keen_5, NULL, SW_SHOWDEFAULT);
-      if(fullscreen)ShellExecute(NULL, "open", dosbox_dir, keen_5_fullscreen, NULL, SW_SHOWDEFAULT);
+      if(!fullscreen)ShellExecute(NULL, "open", dosbox_dir.c_str(), keen_5, NULL, SW_SHOWDEFAULT);
+      if(fullscreen)ShellExecute(NULL, "open", dosbox_dir.c_str(), keen_5_fullscreen, NULL, SW_SHOWDEFAULT);
       step=0;
     }
     if(location_clicked(360,680,50,250)){
-      if(!fullscreen)ShellExecute(NULL, "open", dosbox_dir, keen_2, NULL, SW_SHOWDEFAULT);
-      if(fullscreen)ShellExecute(NULL, "open", dosbox_dir, keen_2_fullscreen, NULL, SW_SHOWDEFAULT);
+      if(!fullscreen)ShellExecute(NULL, "open", dosbox_dir.c_str(), keen_2, NULL, SW_SHOWDEFAULT);
+      if(fullscreen)ShellExecute(NULL, "open", dosbox_dir.c_str(), keen_2_fullscreen, NULL, SW_SHOWDEFAULT);
       step=0;
     }
     if(location_clicked(360,680,270,470)){
-      if(!fullscreen)ShellExecute(NULL, "open", dosbox_dir, keen_4, NULL, SW_SHOWDEFAULT);
-      if(fullscreen)ShellExecute(NULL, "open", dosbox_dir, keen_4_fullscreen, NULL, SW_SHOWDEFAULT);
+      if(!fullscreen)ShellExecute(NULL, "open", dosbox_dir.c_str(), keen_4, NULL, SW_SHOWDEFAULT);
+      if(fullscreen)ShellExecute(NULL, "open", dosbox_dir.c_str(), keen_4_fullscreen, NULL, SW_SHOWDEFAULT);
       step=0;
     }
     if(location_clicked(360,680,490,690)){
-      if(!fullscreen)ShellExecute(NULL, "open", dosbox_dir, keen_6, NULL, SW_SHOWDEFAULT);
-      if(fullscreen)ShellExecute(NULL, "open", dosbox_dir, keen_6_fullscreen, NULL, SW_SHOWDEFAULT);
+      if(!fullscreen)ShellExecute(NULL, "open", dosbox_dir.c_str(), keen_6, NULL, SW_SHOWDEFAULT);
+      if(fullscreen)ShellExecute(NULL, "open", dosbox_dir.c_str(), keen_6_fullscreen, NULL, SW_SHOWDEFAULT);
       step=0;
     }
    }
@@ -195,7 +194,7 @@ void draw(){
       rectfill(buffer,357,487,682,692,makecol(255,0,0));
     }
 
-    textprintf_ex(buffer,font,5,7,makecol(0,0,0),-1,"Fullscreen");
+    textprintf_ex(buffer,font,5,7,makecol(0,0,0),-1,"Path%s",dosbox_dir.c_str());
 
 
     rectfill(buffer,5,20,25,40,makecol(0,0,0));

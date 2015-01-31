@@ -25,6 +25,8 @@ FONT* slabo;
 
 bool close_button_pressed;
 
+bool fullscreen=true;
+
 // FPS System
 volatile int ticks = 0;
 const int updates_per_second = 60;
@@ -34,14 +36,22 @@ int fps;
 int frames_done;
 int old_time;
 
-int step;
+int step=10;
 
-char* keen_1=".\\keen1\\KEEN1.EXE -fullscreen -exit -noconsole";
-char* keen_2=".\\keen2\\KEEN2.EXE -fullscreen -exit -noconsole";
-char* keen_3=".\\keen3\\KEEN3.EXE -fullscreen -exit -noconsole";
-char* keen_4=".\\keen4\\KEEN4E.EXE -fullscreen -exit -noconsole";
-char* keen_5=".\\keen5\\KEEN5E.EXE -fullscreen -exit -noconsole";
-char* keen_6=".\\keen6\\KEEN6C.EXE -fullscreen -exit -noconsole";
+char* keen_1=".\\keen1\\KEEN1.EXE -exit -noconsole";
+char* keen_2=".\\keen2\\KEEN2.EXE -exit -noconsole";
+char* keen_3=".\\keen3\\KEEN3.EXE -exit -noconsole";
+char* keen_4=".\\keen4\\KEEN4E.EXE -exit -noconsole";
+char* keen_5=".\\keen5\\KEEN5E.EXE -exit -noconsole";
+char* keen_6=".\\keen6\\KEEN6C.EXE -exit -noconsole";
+
+char* keen_1_fullscreen=".\\keen1\\KEEN1.EXE -fullscreen -exit -noconsole";
+char* keen_2_fullscreen=".\\keen2\\KEEN2.EXE -fullscreen -exit -noconsole";
+char* keen_3_fullscreen=".\\keen3\\KEEN3.EXE -fullscreen -exit -noconsole";
+char* keen_4_fullscreen=".\\keen4\\KEEN4E.EXE -fullscreen -exit -noconsole";
+char* keen_5_fullscreen=".\\keen5\\KEEN5E.EXE -fullscreen -exit -noconsole";
+char* keen_6_fullscreen=".\\keen6\\KEEN6C.EXE -fullscreen -exit -noconsole";
+
 char* dosbox_dir="C:\\Program Files (x86)\\DOSBox-0.74\\DOSBox.exe";
 
 void ticker(){
@@ -92,32 +102,51 @@ bool location_clicked(int min_x,int max_x,int min_y,int max_y){
         return true;
     else return false;
 }
+void load_data(){
 
+}
 void update(){
 
-   if(step>100){
+   if(location_clicked(5,25,20,40)){
+    if(fullscreen && step>10){
+      fullscreen=false;
+      step=0;
+    }
+    if(!fullscreen && step>10){
+      fullscreen=true;
+      step=0;
+    }
+   }
+
+   if(step>10){
     if(location_clicked(20,340,50,250)){
-      ShellExecute(NULL, "open", dosbox_dir, keen_1, NULL, SW_SHOWDEFAULT);
+      if(!fullscreen)ShellExecute(NULL, "open", dosbox_dir, keen_1, NULL, SW_SHOWDEFAULT);
+      if(fullscreen)ShellExecute(NULL, "open", dosbox_dir, keen_1_fullscreen, NULL, SW_SHOWDEFAULT);
       step=0;
     }
     if(location_clicked(20,340,270,470)){
-      ShellExecute(NULL, "open", dosbox_dir, keen_3, NULL, SW_SHOWDEFAULT);
+      if(!fullscreen)ShellExecute(NULL, "open", dosbox_dir, keen_3, NULL, SW_SHOWDEFAULT);
+      if(fullscreen)ShellExecute(NULL, "open", dosbox_dir, keen_3_fullscreen, NULL, SW_SHOWDEFAULT);
       step=0;
     }
     if(location_clicked(20,340,490,690)){
-      ShellExecute(NULL, "open", dosbox_dir, keen_5, NULL, SW_SHOWDEFAULT);
+      if(!fullscreen)ShellExecute(NULL, "open", dosbox_dir, keen_5, NULL, SW_SHOWDEFAULT);
+      if(fullscreen)ShellExecute(NULL, "open", dosbox_dir, keen_5_fullscreen, NULL, SW_SHOWDEFAULT);
       step=0;
     }
     if(location_clicked(360,680,50,250)){
-      ShellExecute(NULL, "open", dosbox_dir, keen_2, NULL, SW_SHOWDEFAULT);
+      if(!fullscreen)ShellExecute(NULL, "open", dosbox_dir, keen_2, NULL, SW_SHOWDEFAULT);
+      if(fullscreen)ShellExecute(NULL, "open", dosbox_dir, keen_2_fullscreen, NULL, SW_SHOWDEFAULT);
       step=0;
     }
     if(location_clicked(360,680,270,470)){
-      ShellExecute(NULL, "open", dosbox_dir, keen_4, NULL, SW_SHOWDEFAULT);
+      if(!fullscreen)ShellExecute(NULL, "open", dosbox_dir, keen_4, NULL, SW_SHOWDEFAULT);
+      if(fullscreen)ShellExecute(NULL, "open", dosbox_dir, keen_4_fullscreen, NULL, SW_SHOWDEFAULT);
       step=0;
     }
     if(location_clicked(360,680,490,690)){
-      ShellExecute(NULL, "open", dosbox_dir, keen_6, NULL, SW_SHOWDEFAULT);
+      if(!fullscreen)ShellExecute(NULL, "open", dosbox_dir, keen_6, NULL, SW_SHOWDEFAULT);
+      if(fullscreen)ShellExecute(NULL, "open", dosbox_dir, keen_6_fullscreen, NULL, SW_SHOWDEFAULT);
       step=0;
     }
    }
@@ -130,24 +159,45 @@ void draw(){
 
 
     rectfill(buffer,0,0,700,710,makecol(255,255,255));
+    if(location_hovered(20,340,50,250)){
+      textout_centre_ex( buffer, slabo, "Launch Keen 1 \"Marooned on Mars\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
+      rectfill(buffer,17,47,342,252,makecol(255,0,0));
+    }
+    if(location_hovered(20,340,270,470)){
+      textout_centre_ex( buffer, slabo, "Launch Keen 3 \"Keen Must Die!\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
+      rectfill(buffer,17,267,342,472,makecol(255,0,0));
+    }
+    if(location_hovered(20,340,490,690)){
+      textout_centre_ex( buffer, slabo, "Launch Keen 5 \"The Armageddon Machine\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
+      rectfill(buffer,17,487,342,692,makecol(255,0,0));
+    }
+    if(location_hovered(360,680,50,250)){
+      textout_centre_ex( buffer, slabo, "Launch Keen 2 \"The Earth Explodes\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
+      rectfill(buffer,357,47,682,252,makecol(255,0,0));
+    }
+    if(location_hovered(360,680,270,470)){
+      textout_centre_ex( buffer, slabo, "Launch Keen 4 \"Goodbye Galaxy\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
+      rectfill(buffer,357,267,682,472,makecol(255,0,0));
+    }
+    if(location_hovered(360,680,490,690)){
+      textout_centre_ex( buffer, slabo, "Launch Keen 6 \"Aliens Ate My Babysitter\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
+      rectfill(buffer,357,487,682,692,makecol(255,0,0));
+    }
+
+    textprintf_ex(buffer,font,5,7,makecol(0,0,0),-1,"Fullscreen");
+
+
+    rectfill(buffer,5,20,25,40,makecol(0,0,0));
+
+    if(!fullscreen)rectfill(buffer,7,22,23,38,makecol(255,0,0));
+    if(fullscreen)rectfill(buffer,7,22,23,38,makecol(0,255,0));
+
     draw_sprite(buffer,keen1,20,50);
     draw_sprite(buffer,keen3,20,270);
     draw_sprite(buffer,keen5,20,490);
     draw_sprite(buffer,keen2,360,50);
     draw_sprite(buffer,keen4,360,270);
     draw_sprite(buffer,keen6,360,490);
-    if(location_hovered(20,340,50,250))
-     textout_centre_ex( buffer, slabo, "Launch Keen 1 \"Marooned on Mars\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
-    if(location_hovered(20,340,270,470))
-     textout_centre_ex( buffer, slabo, "Launch Keen 3 \"Keen Must Die!\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
-    if(location_hovered(20,340,490,690))
-     textout_centre_ex( buffer, slabo, "Launch Keen 5 \"The Armageddon Machine\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
-    if(location_hovered(360,680,50,250))
-     textout_centre_ex( buffer, slabo, "Launch Keen 2 \"The Earth Explodes\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
-    if(location_hovered(360,680,270,470))
-     textout_centre_ex( buffer, slabo, "Launch Keen 4 \"Goodbye Galaxy\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
-    if(location_hovered(360,680,490,690))
-     textout_centre_ex( buffer, slabo, "Launch Keen 6 \"Aliens Ate My Babysitter\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
 
     draw_sprite(buffer,cursor,mouse_x,mouse_y);
 

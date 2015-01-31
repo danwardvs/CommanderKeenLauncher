@@ -4,6 +4,11 @@
 #include<windows.h>
 #include<string>
 #include<cstring>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+
+using namespace std;
 
 //SFfadsfkghldfj;
 BITMAP* buffer;
@@ -52,7 +57,7 @@ char* keen_4_fullscreen=".\\keen4\\KEEN4E.EXE -fullscreen -exit -noconsole";
 char* keen_5_fullscreen=".\\keen5\\KEEN5E.EXE -fullscreen -exit -noconsole";
 char* keen_6_fullscreen=".\\keen6\\KEEN6C.EXE -fullscreen -exit -noconsole";
 
-char* dosbox_dir="C:\\Program Files (x86)\\DOSBox-0.74\\DOSBox.exe";
+char dosbox_dir;
 
 void ticker(){
   ticks++;
@@ -102,9 +107,15 @@ bool location_clicked(int min_x,int max_x,int min_y,int max_y){
         return true;
     else return false;
 }
+
 void load_data(){
+  ifstream read("dosboxpath.txt");
+  read >> dosbox_dir;
+  read.close();
+  char* asdf = dosbox_dir;
 
 }
+
 void update(){
 
    if(location_clicked(5,25,20,40)){
@@ -217,9 +228,11 @@ void draw(){
 void setup(){
     buffer=create_bitmap(700,710);
 
+    load_data();
+
 
     // Load fonts
-    f1 = load_font("build\\slabo.pcx", NULL, NULL);
+    f1 = load_font("slabo.pcx", NULL, NULL);
     f2 = extract_font_range(f1, ' ', 'A'-1);
     f3 = extract_font_range(f1, 'A', 'Z');
     f4 = extract_font_range(f1, 'Z'+1, 'z');
@@ -259,7 +272,7 @@ void setup(){
       abort_on_error("Cannot find image icons\\keen5.png\nPlease check your files and try again");
   if (!(keen6 = load_bitmap("icons\\keen6.png", NULL)))
       abort_on_error("Cannot find image icons\\keen6.png\nPlease check your files and try again");
-  if (!(cursor = load_bitmap("build\\cursor.png", NULL)))
+  if (!(cursor = load_bitmap("cursor.png", NULL)))
       abort_on_error("Cannot find image cursor.png\nPlease check your files and try again");
 }
 
@@ -276,7 +289,6 @@ int main(){
   install_keyboard();
   install_mouse();
   set_color_depth(32);
-
 
   set_gfx_mode(GFX_AUTODETECT_WINDOWED,700,710, 0, 0);
   install_sound(DIGI_AUTODETECT,MIDI_AUTODETECT,".");

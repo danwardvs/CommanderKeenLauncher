@@ -57,7 +57,7 @@ const char* keen_4_fullscreen=".\\keen4\\KEEN4E.EXE -fullscreen -exit -noconsole
 const char* keen_5_fullscreen=".\\keen5\\KEEN5E.EXE -fullscreen -exit -noconsole";
 const char* keen_6_fullscreen=".\\keen6\\KEEN6C.EXE -fullscreen -exit -noconsole";
 
-string dosbox_dir;
+string dosbox_dir = "C:\\Program Files (x86)\\DOSBox-0.74\\DOSbox.exe";
 
 void ticker(){
   ticks++;
@@ -110,7 +110,7 @@ bool location_clicked(int min_x,int max_x,int min_y,int max_y){
 
 void load_data(){
   ifstream read("dosboxpath.txt");
-  read >> dosbox_dir;
+  //read >> dosbox_dir;
   read.close();
 
 }
@@ -194,7 +194,7 @@ void draw(){
       rectfill(buffer,357,487,682,692,makecol(255,0,0));
     }
 
-    textprintf_ex(buffer,font,5,7,makecol(0,0,0),-1,"Path%s",dosbox_dir.c_str());
+    textprintf_ex(buffer,font,5,7,makecol(0,0,0),-1,"Fullscreen");
 
 
     rectfill(buffer,5,20,25,40,makecol(0,0,0));

@@ -10,3 +10,29 @@
 	<fstream>
 	<sstream>
 
+1483224513 source:c:\users\allan\documents\games indev\commanderkeenlauncher\main.cpp
+	<allegro.h>
+	<winalleg.h>
+	<alpng.h>
+	<time.h>
+	<windows.h>
+	<string>
+	<cstring>
+	<iostream>
+	<fstream>
+	<sstream>
+
+1483224799 source:c:\users\allan\documents\games indev\commanderkeenlauncher\res\resources.rc
+
+1483226097 source:c:\users\allan\documents\games indev\commanderkeenlauncher\src\main.cpp
+	<allegro.h>
+	<winalleg.h>
+	<alpng.h>
+	<time.h>
+	<windows.h>
+	<string>
+	<cstring>
+	<iostream>
+	<fstream>
+	<sstream>
+

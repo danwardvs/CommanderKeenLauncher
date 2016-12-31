@@ -1,7 +1,6 @@
 DOSBox version 0.74
 Copyright 2002-2010 DOSBox Team, published under GNU GPL.
 ---
-CONFIG:Loading primary settings from config file C:\Users\Danward\AppData\Local\DOSBox\dosbox-0.74.conf
+CONFIG:Loading primary settings from config file C:\Users\Allan\AppData\Local\DOSBox\dosbox-0.74.conf
 MIDI:Opened device:win32
-One joystick reported, initializing with 4axis
-Using joystick Controller (Afterglow Gamepad for Xbox 360) with 5 axes, 10 buttons and 1 hat(s)
+MAPPER: Loading mapper settings from C:\Users\Allan\AppData\Local\DOSBox\mapper-0.74.map

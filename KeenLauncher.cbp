@@ -17,13 +17,18 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add option="-lalpng" />
+					<Add option="-lalleg" />
 				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="main.cpp" />
+		<Unit filename="res/resources.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Unit filename="src/main.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

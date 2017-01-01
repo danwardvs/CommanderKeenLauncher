@@ -5,10 +5,8 @@
 #include <time.h>
 #include <windows.h>
 #include <string>
-#include <cstring>
 #include <iostream>
 #include <fstream>
-#include <sstream>
 
 // Images
 BITMAP *buffer;

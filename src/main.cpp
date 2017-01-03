@@ -6,7 +6,13 @@
 #include <iostream>
 #include <fstream>
 
-#include<launch_unix.h>
+#ifdef __linux__
+#include<launch_linux.h>
+#endif
+
+#ifdef __MINGW32__
+#include<launch_win.h>
+#endif // __MINGW32__
 // Images
 BITMAP *buffer;
 BITMAP *keen1;
@@ -16,9 +22,6 @@ BITMAP *keen4;
 BITMAP *keen5;
 BITMAP *keen6;
 
-// Fonts
-FONT *f1, *f2, *f3, *f4, *f5, *slabo;
-
 // Full screen launch or naw
 bool fullscreen = false;
 
@@ -26,7 +29,7 @@ bool fullscreen = false;
 int step=10;
 
 // Paths
-const char* keen_1="./keen1/KEEN1.EXE -exit -noconsole";
+const char* keen_1=".\\keen1\\KEEN1.EXE -exit -noconsole";
 const char* keen_2="./keen2/KEEN2.EXE -exit -noconsole";
 const char* keen_3="./keen3/KEEN3.EXE -exit -noconsole";
 const char* keen_4="./keen4/KEEN4E.EXE -exit -noconsole";
@@ -121,31 +124,32 @@ void load_data(){
 
 // Update program logic
 void update(){
+  std::string fullscreen_argument="";
+  if(fullscreen)
+    fullscreen_argument="-fullscreen";
+
   // Game launching
   if(step > 10 && mouse_b & 1){
+
     if(location_clicked(20,340,50,250)){
-      if(!fullscreen)load_dosbox(dosbox_dir,keen_1);
-      if(fullscreen)load_dosbox(dosbox_dir,keen_1_fullscreen);
+        load_dosbox(dosbox_dir,"keen1","KEEN1.exe",fullscreen_argument + " -exit -noconsole");
     }
     if(location_clicked(20,340,270,470)){
-      if(!fullscreen)load_dosbox(dosbox_dir,keen_2);
-      if(fullscreen)load_dosbox(dosbox_dir,keen_2_fullscreen);;
+         load_dosbox(dosbox_dir,"keen3","KEEN3.exe",fullscreen_argument + " -exit -noconsole");
     }
     if(location_clicked(20,340,490,690)){
-      if(!fullscreen)load_dosbox(dosbox_dir,keen_3);
-      if(fullscreen)load_dosbox(dosbox_dir,keen_3_fullscreen);
+        load_dosbox(dosbox_dir,"keen5","KEEN5E.exe",fullscreen_argument + " -exit -noconsole");
     }
     if(location_clicked(360,680,50,250)){
-      if(!fullscreen)load_dosbox(dosbox_dir,keen_4);
-      if(fullscreen)load_dosbox(dosbox_dir,keen_4_fullscreen);
+        load_dosbox(dosbox_dir,"keen2","KEEN2.exe",fullscreen_argument + " -exit -noconsole");
     }
+
     if(location_clicked(360,680,270,470)){
-      if(!fullscreen)load_dosbox(dosbox_dir,keen_5);
-      if(fullscreen)load_dosbox(dosbox_dir,keen_5_fullscreen);
+        load_dosbox(dosbox_dir,"keen4","KEEN4E.exe",fullscreen_argument + " -exit -noconsole");
     }
+
     if(location_clicked(360,680,490,690)){
-      if(!fullscreen)load_dosbox(dosbox_dir,keen_6);
-      if(fullscreen)load_dosbox(dosbox_dir,keen_6_fullscreen);
+        load_dosbox(dosbox_dir,"keen6","KEEN6C.exe",fullscreen_argument + " -exit -noconsole");
     }
     // Full screen selection
     if(location_clicked(5,25,20,40))
@@ -166,27 +170,27 @@ void draw(){
 
   // Select a game
   if(location_hovered(20,340,50,250)){
-    textout_centre_ex( buffer, slabo, "Launch Keen 1 \"Marooned on Mars\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
+    textout_centre_ex( buffer, font, "Launch Keen 1 \"Marooned on Mars\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
     rectfill(buffer,17,47,342,252,makecol(255,0,0));
   }
   else if(location_hovered(20,340,270,470)){
-    textout_centre_ex( buffer, slabo, "Launch Keen 3 \"Keen Must Die!\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
+    textout_centre_ex( buffer, font, "Launch Keen 3 \"Keen Must Die!\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
     rectfill(buffer,17,267,342,472,makecol(255,0,0));
   }
   else if(location_hovered(20,340,490,690)){
-    textout_centre_ex( buffer, slabo, "Launch Keen 5 \"The Armageddon Machine\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
+    textout_centre_ex( buffer, font, "Launch Keen 5 \"The Armageddon Machine\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
     rectfill(buffer,17,487,342,692,makecol(255,0,0));
   }
   else if(location_hovered(360,680,50,250)){
-    textout_centre_ex( buffer, slabo, "Launch Keen 2 \"The Earth Explodes\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
+    textout_centre_ex( buffer, font, "Launch Keen 2 \"The Earth Explodes\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
     rectfill(buffer,357,47,682,252,makecol(255,0,0));
   }
   else if(location_hovered(360,680,270,470)){
-    textout_centre_ex( buffer, slabo, "Launch Keen 4 \"Goodbye Galaxy\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
+    textout_centre_ex( buffer, font, "Launch Keen 4 \"Goodbye Galaxy\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
     rectfill(buffer,357,267,682,472,makecol(255,0,0));
   }
   else if(location_hovered(360,680,490,690)){
-    textout_centre_ex( buffer, slabo, "Launch Keen 6 \"Aliens Ate My Babysitter\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
+    textout_centre_ex( buffer, font, "Launch Keen 6 \"Aliens Ate My Babysitter\"", SCREEN_W/2, 10, makecol(0,0,0), -1);
     rectfill(buffer,357,487,682,692,makecol(255,0,0));
   }
 
@@ -235,24 +239,7 @@ void setup(){
 
   // Get dosbox path
   load_data();
-/*
-  // Load fonts
-  f1 = load_font( "fonts/slabo.pcx", NULL, NULL);
-  f2 = extract_font_range( f1, ' ', 'A'-1);
-  f3 = extract_font_range( f1, 'A', 'Z');
-  f4 = extract_font_range( f1, 'Z'+1, 'z');
-  slabo = merge_fonts( f4, f5 = merge_fonts(f2, f3));
 
-  // Destroy temporary fonts
-  destroy_font(f1);
-  destroy_font(f2);
-  destroy_font(f3);
-  destroy_font(f4);
-  destroy_font(f5);
-
-*/
-
-  slabo=font;
   srand(time(NULL));
 
    // Setup for FPS system

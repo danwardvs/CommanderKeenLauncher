@@ -52,3 +52,15 @@
 1483419267 /home/danwardvs/Documents/CommanderKeenLauncher/include/launch_unix.h
 	<cstdlib>
 
+1483437727 source:c:\users\danward\documents\github\commanderkeenlauncher\res\resources.rc
+
+1483439837 source:c:\users\danward\documents\github\commanderkeenlauncher\src\main.cpp
+	<allegro.h>
+	<alpng.h>
+	<time.h>
+	<string>
+	<iostream>
+	<fstream>
+	<launch_linux.h>
+	<launch_win.h>
+

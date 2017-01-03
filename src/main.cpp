@@ -1,13 +1,12 @@
 // Libraries
 #include <allegro.h>
-#include <winalleg.h>
 #include <alpng.h>
 #include <time.h>
-#include <windows.h>
 #include <string>
 #include <iostream>
 #include <fstream>
 
+#include<launch_unix.h>
 // Images
 BITMAP *buffer;
 BITMAP *keen1;
@@ -27,19 +26,19 @@ bool fullscreen = false;
 int step=10;
 
 // Paths
-const char* keen_1=".\\keen1\\KEEN1.EXE -exit -noconsole";
-const char* keen_2=".\\keen2\\KEEN2.EXE -exit -noconsole";
-const char* keen_3=".\\keen3\\KEEN3.EXE -exit -noconsole";
-const char* keen_4=".\\keen4\\KEEN4E.EXE -exit -noconsole";
-const char* keen_5=".\\keen5\\KEEN5E.EXE -exit -noconsole";
-const char* keen_6=".\\keen6\\KEEN6C.EXE -exit -noconsole";
+const char* keen_1="./keen1/KEEN1.EXE -exit -noconsole";
+const char* keen_2="./keen2/KEEN2.EXE -exit -noconsole";
+const char* keen_3="./keen3/KEEN3.EXE -exit -noconsole";
+const char* keen_4="./keen4/KEEN4E.EXE -exit -noconsole";
+const char* keen_5="./keen5/KEEN5E.EXE -exit -noconsole";
+const char* keen_6="./keen6/KEEN6C.EXE -exit -noconsole";
 
-const char* keen_1_fullscreen=".\\keen1\\KEEN1.EXE -fullscreen -exit -noconsole";
-const char* keen_2_fullscreen=".\\keen2\\KEEN2.EXE -fullscreen -exit -noconsole";
-const char* keen_3_fullscreen=".\\keen3\\KEEN3.EXE -fullscreen -exit -noconsole";
-const char* keen_4_fullscreen=".\\keen4\\KEEN4E.EXE -fullscreen -exit -noconsole";
-const char* keen_5_fullscreen=".\\keen5\\KEEN5E.EXE -fullscreen -exit -noconsole";
-const char* keen_6_fullscreen=".\\keen6\\KEEN6C.EXE -fullscreen -exit -noconsole";
+const char* keen_1_fullscreen="./keen1/KEEN1.EXE -fullscreen -exit -noconsole";
+const char* keen_2_fullscreen="./keen2/KEEN2.EXE -fullscreen -exit -noconsole";
+const char* keen_3_fullscreen="./keen3/KEEN3.EXE -fullscreen -exit -noconsole";
+const char* keen_4_fullscreen="./keen4/KEEN4E.EXE -fullscreen -exit -noconsole";
+const char* keen_5_fullscreen="./keen5/KEEN5E.EXE -fullscreen -exit -noconsole";
+const char* keen_6_fullscreen="./keen6/KEEN6C.EXE -fullscreen -exit -noconsole";
 
 std::string dosbox_dir = "";
 
@@ -125,28 +124,28 @@ void update(){
   // Game launching
   if(step > 10 && mouse_b & 1){
     if(location_clicked(20,340,50,250)){
-      if(!fullscreen)ShellExecute(NULL, "open", dosbox_dir.c_str(), keen_1, NULL, SW_SHOWDEFAULT);
-      if(fullscreen)ShellExecute(NULL, "open", dosbox_dir.c_str(), keen_1_fullscreen, NULL, SW_SHOWDEFAULT);
+      if(!fullscreen)load_dosbox(dosbox_dir,keen_1);
+      if(fullscreen)load_dosbox(dosbox_dir,keen_1_fullscreen);
     }
     if(location_clicked(20,340,270,470)){
-      if(!fullscreen)ShellExecute(NULL, "open", dosbox_dir.c_str(), keen_3, NULL, SW_SHOWDEFAULT);
-      if(fullscreen)ShellExecute(NULL, "open", dosbox_dir.c_str(), keen_3_fullscreen, NULL, SW_SHOWDEFAULT);
+      if(!fullscreen)load_dosbox(dosbox_dir,keen_2);
+      if(fullscreen)load_dosbox(dosbox_dir,keen_2_fullscreen);;
     }
     if(location_clicked(20,340,490,690)){
-      if(!fullscreen)ShellExecute(NULL, "open", dosbox_dir.c_str(), keen_5, NULL, SW_SHOWDEFAULT);
-      if(fullscreen)ShellExecute(NULL, "open", dosbox_dir.c_str(), keen_5_fullscreen, NULL, SW_SHOWDEFAULT);
+      if(!fullscreen)load_dosbox(dosbox_dir,keen_3);
+      if(fullscreen)load_dosbox(dosbox_dir,keen_3_fullscreen);
     }
     if(location_clicked(360,680,50,250)){
-      if(!fullscreen)ShellExecute(NULL, "open", dosbox_dir.c_str(), keen_2, NULL, SW_SHOWDEFAULT);
-      if(fullscreen)ShellExecute(NULL, "open", dosbox_dir.c_str(), keen_2_fullscreen, NULL, SW_SHOWDEFAULT);
+      if(!fullscreen)load_dosbox(dosbox_dir,keen_4);
+      if(fullscreen)load_dosbox(dosbox_dir,keen_4_fullscreen);
     }
     if(location_clicked(360,680,270,470)){
-      if(!fullscreen)ShellExecute(NULL, "open", dosbox_dir.c_str(), keen_4, NULL, SW_SHOWDEFAULT);
-      if(fullscreen)ShellExecute(NULL, "open", dosbox_dir.c_str(), keen_4_fullscreen, NULL, SW_SHOWDEFAULT);
+      if(!fullscreen)load_dosbox(dosbox_dir,keen_5);
+      if(fullscreen)load_dosbox(dosbox_dir,keen_5_fullscreen);
     }
     if(location_clicked(360,680,490,690)){
-      if(!fullscreen)ShellExecute(NULL, "open", dosbox_dir.c_str(), keen_6, NULL, SW_SHOWDEFAULT);
-      if(fullscreen)ShellExecute(NULL, "open", dosbox_dir.c_str(), keen_6_fullscreen, NULL, SW_SHOWDEFAULT);
+      if(!fullscreen)load_dosbox(dosbox_dir,keen_6);
+      if(fullscreen)load_dosbox(dosbox_dir,keen_6_fullscreen);
     }
     // Full screen selection
     if(location_clicked(5,25,20,40))
@@ -236,7 +235,7 @@ void setup(){
 
   // Get dosbox path
   load_data();
-
+/*
   // Load fonts
   f1 = load_font( "fonts/slabo.pcx", NULL, NULL);
   f2 = extract_font_range( f1, ' ', 'A'-1);
@@ -251,6 +250,9 @@ void setup(){
   destroy_font(f4);
   destroy_font(f5);
 
+*/
+
+  slabo=font;
   srand(time(NULL));
 
    // Setup for FPS system
@@ -267,12 +269,12 @@ void setup(){
   set_close_button_callback(close_button_handler);
 
   // Load images
-  keen1 = load_bitmap_ex("icons\\keen1.png");
-  keen2 = load_bitmap_ex("icons\\keen2.png");
-  keen3 = load_bitmap_ex("icons\\keen3.png");
-  keen4 = load_bitmap_ex("icons\\keen4.png");
-  keen5 = load_bitmap_ex("icons\\keen5.png");
-  keen6 = load_bitmap_ex("icons\\keen6.png");
+  keen1 = load_bitmap_ex("icons/keen1.png");
+  keen2 = load_bitmap_ex("icons/keen2.png");
+  keen3 = load_bitmap_ex("icons/keen3.png");
+  keen4 = load_bitmap_ex("icons/keen4.png");
+  keen5 = load_bitmap_ex("icons/keen5.png");
+  keen6 = load_bitmap_ex("icons/keen6.png");
 }
 
 

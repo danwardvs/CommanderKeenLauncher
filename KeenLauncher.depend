@@ -36,3 +36,19 @@
 	<fstream>
 	<sstream>
 
+1483413140 source:/home/danwardvs/Documents/CommanderKeenLauncher/res/resources.rc
+
+1483419090 source:/home/danwardvs/Documents/CommanderKeenLauncher/src/main.cpp
+	<allegro.h>
+	<alpng.h>
+	<time.h>
+	<string>
+	<iostream>
+	<fstream>
+	<launch_unix.h>
+
+1149797320 /home/danwardvs/Downloads/alpng/src/alpng.h
+
+1483419267 /home/danwardvs/Documents/CommanderKeenLauncher/include/launch_unix.h
+	<cstdlib>
+

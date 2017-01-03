@@ -28,21 +28,6 @@ bool fullscreen = false;
 // Step counter
 int step=10;
 
-// Paths
-const char* keen_1=".\\keen1\\KEEN1.EXE -exit -noconsole";
-const char* keen_2="./keen2/KEEN2.EXE -exit -noconsole";
-const char* keen_3="./keen3/KEEN3.EXE -exit -noconsole";
-const char* keen_4="./keen4/KEEN4E.EXE -exit -noconsole";
-const char* keen_5="./keen5/KEEN5E.EXE -exit -noconsole";
-const char* keen_6="./keen6/KEEN6C.EXE -exit -noconsole";
-
-const char* keen_1_fullscreen="./keen1/KEEN1.EXE -fullscreen -exit -noconsole";
-const char* keen_2_fullscreen="./keen2/KEEN2.EXE -fullscreen -exit -noconsole";
-const char* keen_3_fullscreen="./keen3/KEEN3.EXE -fullscreen -exit -noconsole";
-const char* keen_4_fullscreen="./keen4/KEEN4E.EXE -fullscreen -exit -noconsole";
-const char* keen_5_fullscreen="./keen5/KEEN5E.EXE -fullscreen -exit -noconsole";
-const char* keen_6_fullscreen="./keen6/KEEN6C.EXE -fullscreen -exit -noconsole";
-
 std::string dosbox_dir = "";
 
 // FPS System
